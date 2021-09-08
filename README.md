@@ -59,7 +59,7 @@ You can ssh from your fastmac/linux instance to your servers. First you have to 
 
 In your `fastmac` repo, edit the `script-{linux,mac}.sh` files to add configuration commands that you want run automatically when you create a new session. These are bash scripts that are run whenever a new session is created.
 
-Furthermore, any files that you add to your repo will be available in your sessions. So you can use this to any any data, scripts, information, etc that you want to have access to in your fastmac/linux sessions.
+Furthermore, any files that you add to your repo will be available in your sessions. So you can use this to include any data, scripts, information, etc that you want to have access to in your fastmac/linux sessions.
 
 ## Behind the scenes
 
