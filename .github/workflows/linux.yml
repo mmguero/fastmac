@@ -13,7 +13,7 @@ jobs:
       with:
         ssh_key: ${{ secrets.SSH_KEY }}
         key_file: id_ecdsa
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: source script-linux.sh
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@master
