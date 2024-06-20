@@ -48,7 +48,25 @@ popd >/dev/null 2>&1
 if [[ -d "${ASDF_DIR}" ]]; then
   _EnvSetup
   asdf update
+  ENV_LIST=(
+    age
+    bat
+    direnv
+    eza
+    fd
+    fzf
+    peco
+    jq
+    ripgrep
+    viddy
+    yq
+    yj
+  )
+  for i in ${ENV_LIST[@]}; do
+    asdf plugin add "$i"
+    asdf install "$i" latest
+    asdf global "$i" latest
+    asdf reshim "$i"
+  done
   _EnvSetup
 fi # .asdf check
-
-echo '. "$HOME"/.profile' >> .bash_profile
