@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+function _EnvSetup {
+  if [[ -d "${ASDF_DIR:-$HOME/.asdf}" ]]; then
+    . "${ASDF_DIR:-$HOME/.asdf}"/asdf.sh
+    if [[ -n $ASDF_DIR ]]; then
+      . "${ASDF_DIR:-$HOME/.asdf}"/completions/asdf.bash
+      for i in ${ENV_LIST[@]}; do
+        asdf reshim "$i" >/dev/null 2>&1 || true
+      done
+    fi
+  fi
+}
+
 DOTFILES_PATH="${HOME}"/.config/dotfiles
 mkdir -p "${HOME}"/.config "${HOME}"/.local/bin "${HOME}"/.local/share "${HOME}"/tmp
 
@@ -26,3 +38,17 @@ rm -rf "${DOTFILES_PATH}"/.git
   ln -vrs "$DOTFILES_PATH"/bash/context-color/context-color "$HOME"/.local/bin/context-color
 
 echo 'set nocompatible' > "$HOME"/.vimrc
+
+ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
+git clone --recurse-submodules --shallow-submodules https://github.com/asdf-vm/asdf.git "$ASDF_DIR"
+pushd "$ASDF_DIR" >/dev/null 2>&1
+git checkout "$(git describe --abbrev=0 --tags)"
+popd >/dev/null 2>&1
+
+if [[ -d "${ASDF_DIR}" ]]; then
+  _EnvSetup
+  asdf update
+  _EnvSetup
+fi # .asdf check
+
+echo '. "$HOME"/.profile' >> .bash_profile
