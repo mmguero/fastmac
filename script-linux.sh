@@ -37,8 +37,8 @@ rm -rf "${DOTFILES_PATH}"/.git
 [[ -r "$DOTFILES_PATH"/bash/context-color/context-color ]] && rm -vf "$HOME"/.local/bin/context-color && \
   ln -vrs "$DOTFILES_PATH"/bash/context-color/context-color "$HOME"/.local/bin/context-color
 
-[[ -r "$DOTFILES_PATH"/bash/development_setup.sh ]] && rm -vf "$HOME"/.local/bin/bash/development_setup.sh && \
-  ln -vrs "$DOTFILES_PATH"/bash/bash/development_setup.sh "$HOME"/.local/bin/bash/development_setup.sh
+[[ -r "$DOTFILES_PATH"/bash/development_setup.sh ]] && rm -vf "$HOME"/.local/bin/development_setup.sh && \
+  ln -vrs "$DOTFILES_PATH"/bash/bash/development_setup.sh "$HOME"/.local/bin/development_setup.sh
 
 echo 'set nocompatible' > "$HOME"/.vimrc
 
