@@ -70,3 +70,28 @@ if [[ -d "${ASDF_DIR}" ]]; then
   done
   _EnvSetup
 fi # .asdf check
+
+
+cat <<EOF >> "$HOME"/.bashrc.d/98_runner.bashrc
+function GitHubUbuntuSpaceFree {
+  sudo docker rmi \$(docker image ls -aq) >/dev/null 2>&1 || true
+  sudo rm -rf \
+    /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/lib/jvm \
+    /usr/local/share/powershell /usr/share/swift /usr/local/.ghcup || true
+  sudo env DEBIAN_FRONTEND=noninteractive apt-get -q -y update >/dev/null 2>&1
+  sudo env DEBIAN_FRONTEND=noninteractive apt-get -q -y --purge remove \
+    azure-cli \
+    dotnet* \
+    firefox \
+    google-chrome-stable \
+    google-cloud-cli \
+    microsoft-edge-stable \
+    mono-* \
+    mysql* \
+    postgresql* \
+    powershell \
+    temurin*  >/dev/null 2>&1 || true
+  sudo env DEBIAN_FRONTEND=noninteractive apt-get -q -y --purge autoremove >/dev/null 2>&1 || true
+}
+EOF
+
