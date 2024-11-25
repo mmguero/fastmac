@@ -1,0 +1,14 @@
+name: debug
+on:
+  workflow_dispatch:
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          cd
+          whoami
+          ls -la
+          mkdir -p .ssh
+          touch .ssh/foo
+          ls -la .ssh

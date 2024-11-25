@@ -58,12 +58,12 @@ if [[ -d "${ASDF_DIR}" ]]; then
     eza
     fd
     fzf
-    peco
     jq
+    peco
     ripgrep
     viddy
-    yq
     yj
+    yq
   )
   for i in ${ENV_LIST[@]}; do
     asdf plugin add "$i"

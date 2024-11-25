@@ -1,0 +1,19 @@
+name: windows
+on:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    env: 
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: windows-latest
+    steps:
+      - run: |
+          pwd
+          bash -c pwd
+          touch hello
+          ls
+          choco --version
